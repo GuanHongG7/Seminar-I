@@ -54,3 +54,102 @@ Optimizer:SGDM — Stochastic Gradient Descent with Momentum
 
 做法是將資料分為五份，每次使用其中一份作 Validation，其餘四份 Training，總共訓練五次，最後計算五次結果的平均表現。
 
+### Grad-CAM
+Grad-CAM 可以產生 Heat Map：
+- 紅／黃區域：模型較關注的位置
+- 藍色區域：影響較低
+
+### 模型表現
+評估指標包括：
+- Recall
+- Specificity
+- Precision
+- F1-score
+- Accuracy
+- AUC
+
+ResNet-101在三種CNN中整體表現較佳。
+
+## 2.以形態定量與放射組學分析預測兒童幕上低級別膠質瘤相關癲癇
+
+### 研究目的
+- 分析兒童幕上低級別膠質瘤的 MRI 影像特徵
+- 比較有癲癇與無癲癇患者之間的差異
+- 萃取腫瘤位置、形狀、強度與紋理等影像特徵
+- 利用 Machine Learning 建立癲癇預測模型
+希望藉由 MRI 影像，在手術或治療前判斷患者是否較容易發生與腫瘤相關的癲癇。
+
+### 研究資料
+
+研究共分為兩組：
+
+- 有癲癇：23 位患者
+- 無癲癇：25 位患者
+
+### MRI 特徵比較
+
+研究比較有癲癇與無癲癇患者的腫瘤位置與 MRI 特徵。
+
+其中最明顯的是：Temporal lobe
+
+有癲癇患者中約：73.9%
+
+腫瘤主要位於顳葉，而無癲癇組只有：16%
+
+代表腫瘤位置可能是與癲癇發生非常重要的因素之一。
+
+### 影像處理流程
+T2-FLAIR MRI  
+→ 影像前處理  
+→ 腫瘤 ROI 標記  
+→ Spatial normalization  
+→ Radiomics 前處理  
+→ 特徵萃取  
+→ Feature selection  
+→ Machine Learning  
+→ Predict seizure
+
+## 3. 使用腦電圖與機器學習預測憂鬱症藥物的長期療效
+### 研究主題
+研究利用：
+- EEG（Electroencephalography，腦電圖）
+- EEG 功率特徵
+- Functional Connectivity（功能性連結）
+- Phase Synchronization（相位同步）
+- Machine Learning
+來預測重度憂鬱症患者接受藥物治療後，
+在不同治療時間點是否會對藥物產生良好反應。
+
+### 研究對象
+
+研究共納入：
+77 位 Major Depressive Disorder（重度憂鬱症患者）
+收集的資料包含：
+- Week 0 EEG
+- Week 1 EEG
+- Week 4 HAM-D score
+- Week 6 HAM-D score
+- Week 8 HAM-D score
+在治療開始前與治療一週後記錄 EEG，接著第 4、6、8 週評估患者的憂鬱症改善程度。
+
+### 整體研究流程
+EEG 資料  
+→ EEG preprocessing  
+→ Artifact removal  
+→ 頻帶分割  
+→ EEG 特徵萃取  
+→ Functional Connectivity / Power analysis  
+→ Machine Learning  
+→ Leave-One-Out Cross Validation  
+→ 預測 Week 4、6、8 的藥物療效
+
+### EEG Preprocessing
+
+首先對 EEG 進行前處理。
+
+Selected EEG  
+→ FIR bandpass filtering（0.5–30 Hz）  
+→ Common average re-referencing  
+→ ICA 去除眼動等 Artifact  
+→ 各 EEG 頻帶 Bandpass filtering
+
